@@ -82,10 +82,7 @@ class _RegisterState extends State<Register> {
           RaisedButton(
               child: Text("Sign In"),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignIn()),
-                );
+                Navigator.pop(context);
               }),
         ]),
       ),

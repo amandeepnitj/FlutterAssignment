@@ -1,4 +1,5 @@
 import 'package:assignment_fluter/screens/Home/Album.dart';
+import 'package:assignment_fluter/screens/Home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
@@ -15,13 +16,31 @@ class _NewsState extends State<News> {
   bool _loading = false;
   List<dynamic> _users = [];
   @override
+  void initState() {
+    super.initState();
+    loadUserList();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.brown[500],
         elevation: 0.0,
-        title: Text("News"),
+        title: Text("News Canada"),
         actions: <Widget>[
+          FlatButton.icon(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Home()),
+                );
+              },
+              icon: Icon(Icons.home),
+              label: Text(
+                "Home",
+                style: TextStyle(fontSize: 12),
+              )),
           FlatButton.icon(
               onPressed: () {
                 Navigator.push(
@@ -30,7 +49,10 @@ class _NewsState extends State<News> {
                 );
               },
               icon: Icon(Icons.ac_unit),
-              label: Text("Weather"))
+              label: Text(
+                "Weather",
+                style: TextStyle(fontSize: 12),
+              ))
         ],
       ),
       body: _users.isNotEmpty

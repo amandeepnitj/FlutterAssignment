@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:assignment_fluter/screens/Home/News.dart';
+import 'package:assignment_fluter/screens/Home/home.dart';
 import 'package:assignment_fluter/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -88,41 +90,65 @@ class _Album_1State extends State<Album_1> {
         title: Text("Weather Ottawa"),
         actions: <Widget>[
           FlatButton.icon(
-              onPressed: () async {
-                await _auth.signout();
-                Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Home()),
+                );
               },
-              icon: Icon(Icons.person),
-              label: Text("Log Out")),
+              icon: Icon(Icons.home),
+              label: Text(
+                "Home",
+                style: TextStyle(fontSize: 12),
+              )),
+          FlatButton.icon(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => News()),
+                );
+              },
+              icon: Icon(Icons.newspaper),
+              label: Text(
+                "News",
+                style: TextStyle(fontSize: 12),
+              ))
         ],
       ),
       body: Center(
         child: !_loading
             ? CircularProgressIndicator()
-            : Column(
-                children: [
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Text(
-                    "Temperature : " + temperature.toString() + " C",
-                    style: TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "City : " + city,
-                    style: TextStyle(fontSize: 20, color: Colors.white),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Wind Speed : " + windspeed.toString() + "km/h",
-                    style: TextStyle(fontSize: 20, color: Colors.white),
-                  )
-                ],
+            : Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("img/weather.jpeg"), fit: BoxFit.fill),
+                ),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Text(
+                      "Temperature : " + temperature.toString() + " C",
+                      style: TextStyle(fontSize: 24, color: Colors.white),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "City : " + city,
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "Wind Speed : " + windspeed.toString() + "km/h",
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    )
+                  ],
+                ),
+                width: 1000,
               ),
       ),
     );

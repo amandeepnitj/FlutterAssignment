@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.brown[100],
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.brown[500],
         elevation: 0.0,
@@ -64,39 +64,47 @@ class _HomeState extends State<Home> {
           ? ListView.builder(
               itemCount: _users.length,
               itemBuilder: ((context, index) {
-                return Container(
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(
-                        color: Colors.black, //<-- SEE HERE
-                      ),
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 15.0,
-                      vertical: 20.0,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Wrap(
-                        children: [
-                          Text(
-                            _users[index]['name'],
-                            style: TextStyle(fontSize: 20),
+                return Card(
+                  child: Container(
+                    height: 100,
+                    color: Colors.white,
+                    child: Row(
+                      children: [
+                        Center(
+                          child: Padding(
+                            padding: EdgeInsets.all(1),
+                            child: Expanded(
+                              child: Image.asset(
+                                "img/weather.jpeg",
+                                height: 100,
+                                width: 100,
+                              ),
+                              flex: 2,
+                            ),
                           ),
-                          // Text("Province : " +
-                          //     (_users[index]['state-province'] == null
-                          //         ? "Null"
-                          //         : _users[index]['state-province'])),
-                          // Image.network(
-                          //   _users[index]['urlToImage'],
-                          //   height: 400,
-                          //   width: 400,
-                          // ),
-                        ],
-                      ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.topLeft,
+                            child: Column(
+                              children: [
+                                Expanded(
+                                  flex: 5,
+                                  child: ListTile(
+                                    title: Text(_users[index]['name']),
+                                    subtitle: Text(_users[index]['date']),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          flex: 8,
+                        ),
+                      ],
                     ),
                   ),
+                  elevation: 8,
+                  margin: EdgeInsets.all(10),
                 );
               }),
             )
@@ -115,8 +123,8 @@ class _HomeState extends State<Home> {
     setState(() {
       _loading = true;
     });
-    var res = await http.get(
-        Uri.parse("http://universities.hipolabs.com/search?country=canada"));
+    var res = await http
+        .get(Uri.parse("https://date.nager.at/api/v3/PublicHolidays/2022/CA"));
     if (res.statusCode == 200) {
       var jsonData = jsonDecode(res.body);
 

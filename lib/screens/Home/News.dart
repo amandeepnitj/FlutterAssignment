@@ -84,13 +84,20 @@ class _NewsState extends State<News> {
                             height: 400,
                             width: 400,
                           ),
+                          SizedBox(
+                            height: 5,
+                          ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Description : " + _users[index]['description'],
+                                "Description :   " +
+                                    _users[index]['description'],
                                 style: TextStyle(fontSize: 16),
+                              ),
+                              SizedBox(
+                                height: 5,
                               ),
                               Text("Published by " + _users[index]['author']),
                             ],

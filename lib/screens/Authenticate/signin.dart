@@ -12,8 +12,10 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  //use of text editing controller to store the data from input -> text fields
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
+  //use of error variable.... if there is any error in login , the error data will be displayed ... see the code
   String error = "";
   final AuthService _auth = AuthService();
   @override
@@ -55,11 +57,13 @@ class _SignInState extends State<SignIn> {
                   emailcontroller, passwordcontroller);
               if (result == false) {
                 print("error in SignIn ");
+                //storing string in error after getting any error in login
                 setState(
                     () => error = "error in Sign In, please try again later");
               } else {
                 print("sign in  done");
                 print(result);
+                //use of navigator  to navigate b/w screens
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Home()),

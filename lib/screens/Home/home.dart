@@ -15,11 +15,14 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   bool _loading = false;
+  //list to store the data from api
   List<dynamic> _users = [];
+  //for logout
   final AuthService _auth = AuthService();
   @override
   void initState() {
     super.initState();
+    //calling the function on rendering this component
     _loading = false;
     loadUserList();
   }
@@ -60,6 +63,7 @@ class _HomeState extends State<Home> {
               label: Text("Log Out")),
         ],
       ),
+      //use of listview functions to display the array of data on screens into different cards
       body: _users.isNotEmpty
           ? ListView.builder(
               itemCount: _users.length,
@@ -119,6 +123,7 @@ class _HomeState extends State<Home> {
     );
   }
 
+//function to fetch data from api and storing into states
   loadUserList() async {
     setState(() {
       _loading = true;
@@ -139,10 +144,8 @@ class _HomeState extends State<Home> {
   }
 }
 
-
 //news api
 //https://newsapi.org/v2/top-headlines?q=${country}&apiKey=0ac95a24119645c29d0ec5478e888e7c
-
 
 //college api
 //http://universities.hipolabs.com/search?country=canada

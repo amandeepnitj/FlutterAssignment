@@ -12,12 +12,15 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  //use of text editing controller to store the data from input -> text fields
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
   final AuthService _auth = AuthService();
 
   String email = "";
   String password = "";
+  //use of error variable.... if there is any error in login , the error data will be displayed ... see the code
+
   String error = "";
 
   @override
@@ -49,6 +52,7 @@ class _RegisterState extends State<Register> {
             height: 20,
           ),
           Text(
+            //storing string in error after getting any error in login
             error,
             style: TextStyle(color: Colors.red, fontSize: 14.0),
           ),
@@ -62,6 +66,7 @@ class _RegisterState extends State<Register> {
                 setState(
                     () => error = "error in SignUp, please try again later");
               } else {
+                //use of navigator  to navigate b/w screens
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => SignIn()),

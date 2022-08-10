@@ -14,10 +14,12 @@ class News extends StatefulWidget {
 
 class _NewsState extends State<News> {
   bool _loading = false;
+  //array of list to store the data from api
   List<dynamic> _users = [];
   @override
   void initState() {
     super.initState();
+    //setting the states and calling the function , used to fetch data from api, in constructor
     setState(() {
       _loading = false;
       _users = [];
@@ -60,6 +62,7 @@ class _NewsState extends State<News> {
               ))
         ],
       ),
+      //use of listview to display the array of data into cards
       body: _users.isNotEmpty
           ? ListView.builder(
               itemCount: _users.length,
@@ -126,6 +129,7 @@ class _NewsState extends State<News> {
     );
   }
 
+// function which is fetching data from api
   loadUserList() async {
     setState(() {
       _loading = true;

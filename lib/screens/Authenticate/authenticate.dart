@@ -15,6 +15,7 @@ class _AuthenticateState extends State<Authenticate> {
     setState(() => showSignIn = !showSignIn);
   }
 
+//it simply render the component... there is no use of if else here
   @override
   Widget build(BuildContext context) {
     if (showSignIn) {

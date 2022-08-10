@@ -7,6 +7,7 @@ import 'package:assignment_fluter/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+//fetching data from api using http
 Future<Album> fetchAlbum() async {
   final response = await http.get(Uri.parse(
       'https://api.open-meteo.com/v1/forecast?latitude=45.4235&longitude=-75.6979&daily=temperature_2m_max&current_weather=true&timezone=America%2FLos_Angeles'));
@@ -23,17 +24,18 @@ Future<Album> fetchAlbum() async {
   }
 }
 
+//creating class which stores the data
 class Album {
   final double temperature;
   final double windspeed;
   final String city;
-
+//initialize constructor
   const Album({
     required this.temperature,
     required this.windspeed,
     required this.city,
   });
-
+//function which stores the data into variable from the jsons
   factory Album.fromJson(Map<String, dynamic> json) {
     return Album(
       temperature: json['current_weather']['temperature'],
@@ -52,7 +54,7 @@ class Album_1 extends StatefulWidget {
 
 class _Album_1State extends State<Album_1> {
   // late Future<Album> futureAlbum;
-
+//initiaizing the variables
   bool _loading = false;
   double temperature = 0.0;
   double windspeed = 0.0;
@@ -91,6 +93,7 @@ class _Album_1State extends State<Album_1> {
         actions: <Widget>[
           FlatButton.icon(
               onPressed: () {
+                //use of navigator for switching screens
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Home()),
@@ -116,6 +119,7 @@ class _Album_1State extends State<Album_1> {
         ],
       ),
       body: Center(
+        //checking if data get stored in state or not and... make decision accordingly...
         child: !_loading
             ? CircularProgressIndicator()
             : Container(

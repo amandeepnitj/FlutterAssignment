@@ -7,10 +7,11 @@ import 'package:firebase_core/firebase_core.dart';
 
 class Wrapper extends StatelessWidget {
   const Wrapper({Key? key}) : super(key: key);
-
+//this component checks if user already logged in or not and renders the components accrodingly
   @override
   Widget build(BuildContext context) => Scaffold(
         body: StreamBuilder<User?>(
+          //checking  auth state changes in firebase
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {

@@ -2,10 +2,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+// this class handles all the serrvices of firebase
 class AuthService {
+  //declare and initializing firebase auth variable
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   //sign in anon
+  // function for sign in anonymously
   Future signInAnon() async {
     try {
       final userCredential = await FirebaseAuth.instance.signInAnonymously();
@@ -22,7 +25,7 @@ class AuthService {
     }
   }
 
-  //sign in email and password
+  // function for sign in email and password
   Future SignInEmailAndPassword(emailAddress, password) async {
     var credential;
     var success = true;
@@ -42,7 +45,7 @@ class AuthService {
     }
   }
 
-  //register email and password
+  // function for register with email and password
 
   Future Register(emailAddress, password) async {
     var success = true;
@@ -68,7 +71,7 @@ class AuthService {
     }
   }
 
-  //signout
+  // function for signout
   Future signout() async {
     await FirebaseAuth.instance.signOut();
   }

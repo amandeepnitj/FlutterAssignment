@@ -13,10 +13,13 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
+  //starting of the app
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      //turn off debug banner
       debugShowCheckedModeBanner: false,
+      //call wrapper component
       home: Wrapper(),
     );
   }
